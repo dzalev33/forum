@@ -11,11 +11,18 @@ class RepliesController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Thread $thread)
+    /**
+     * Persist a new reply.
+     *
+     * @param  integer $channelId
+     * @param  Thread  $thread
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store($channelId, Thread $thread)
     {
         $thread->addReply([
-           'body' => request('body'),
-           'user_id' => auth()->id()
+            'body' => request('body'),
+            'user_id' => auth()->id()
         ]);
 
         return back();
