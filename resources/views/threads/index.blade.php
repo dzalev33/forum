@@ -8,16 +8,22 @@
                     <div class="panel-heading">Forum Threads</div>
 
                     <div class="panel-body">
-                     @foreach($threads as $thread)
-                         <article>
+                        @foreach($threads as $thread)
+                            <article>
+                                <div class="level">
+                                    <h4 class="flex">
+                                        <a href="{{ $thread->path() }}">
+                                            {{ $thread->title }}
+                                        </a>
+                                    </h4>
+                                    <a href="{{$thread->path()}}">{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count ) }}</a>
+                                </div>
 
-                                 <a href="{{ $thread->path() }}">
-                                     <h4>  {{ $thread->title }}</h4>
-                             </a>
-                         </article>
-                         <div class="body"> {{ $thread->body }}</div>
+
+                                <div class="body"> {{ $thread->body }}</div>
+                            </article>
                             <hr>
-                         @endforeach
+                        @endforeach
 
                     </div>
                 </div>
